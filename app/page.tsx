@@ -10,14 +10,9 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const bodyElement = document.querySelector("body");
-    if (bodyElement) {
-      if (loading) {
-        bodyElement.classList.add("loading");
-      } else {
-        bodyElement.classList.remove("loading");
-      }
-    }
+    loading
+      ? document.querySelector("body").classList.add("loading")
+      : document.querySelector("body").classList.remove("loading");
   }, [loading]);
 
   return (
