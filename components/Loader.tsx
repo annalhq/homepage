@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { motion } from "framer-motion";
 import Image from "./Image";
@@ -16,7 +18,7 @@ const item = {
     opacity: 1,
     y: 0,
     transition: {
-      ease: [0.6, 0.01, -0.05, 0.95],
+      ease: [0.6, 0.01, 0.05, 0.95],
       duration: 1.6,
     },
   },
@@ -24,7 +26,7 @@ const item = {
     opacity: 0,
     y: -200,
     transition: {
-      ease: "easeInOut",
+      ease: [0.6, 0.01, 0.05, 0.95],
       duration: 0.8,
     },
   },
@@ -36,7 +38,7 @@ const itemMain = {
     opacity: 1,
     y: 0,
     transition: {
-      ease: [0.6, 0.01, -0.05, 0.95],
+      ease: [0.6, 0.01, 0.05, 0.95],
       duration: 1.6,
     },
   },
@@ -88,6 +90,7 @@ const Loader: React.FC<LoaderProps> = ({ setLoading }) => {
           <motion.img
             layoutId="main-image-1"
             src="/images/image-2.jpg"
+            alt="Transition Image"
           />
         </motion.div>
         <ImageBlock variants={item} id="image-3" />

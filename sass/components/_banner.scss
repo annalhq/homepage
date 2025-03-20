@@ -28,6 +28,7 @@
       letter-spacing: -0.8rem;
       display: inline-block;
       white-space: nowrap;
+      color: $black;
       @media (max-width: $layout-breakpoint-xsmall) {
         font-size: 13rem;
       }

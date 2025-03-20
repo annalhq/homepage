@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
@@ -15,7 +17,7 @@ const letterAni = {
   animate: {
     y: 0,
     transition: {
-      ease: [0.6, 0.01, -0.05, 0.95],
+      ease: [0.6, 0.01, 0.05, 0.95],
       duration: 1,
     },
   },
@@ -32,9 +34,13 @@ interface BannerRowProps {
 
 interface BannerRowCenterProps extends BannerRowProps {
   playMarquee: boolean;
+  speed?: number; // Add optional speed property
 }
 
-const AnimatedLetters: React.FC<AnimatedLettersProps> = ({ title, disabled }) => (
+const AnimatedLetters: React.FC<AnimatedLettersProps> = ({
+  title,
+  disabled,
+}) => (
   <motion.span
     className="row-title"
     variants={disabled ? undefined : banner}
@@ -63,15 +69,14 @@ const BannerRowTop: React.FC<BannerRowProps> = ({ title }) => {
         initial={{ opacity: 0, y: 80 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
-          ease: "easeInOut",
+          ease: [0.6, 0.01, 0.05, 0.95],
           duration: 1,
           delay: 0.4,
         }}
         className="row-col"
       >
-        <span className="row-message">
-          We are specialised in setting up the foundation of your brand and
-          setting you up for success.
+        <span className="row-message text-gray-900">
+          Empowering students to build the future with Google technology.
         </span>
       </motion.div>
     </div>
@@ -84,44 +89,35 @@ const BannerRowBottom: React.FC<BannerRowProps> = ({ title }) => {
       <motion.div
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
-        transition={{ ease: [0.6, 0.01, -0.05, 0.95], duration: 1, delay: 1 }}
+        transition={{
+          ease: [0.6, 0.01, 0.05, 0.95],
+          duration: 1,
+          delay: 1,
+        }}
         className="scroll"
-      >
-        <motion.span
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{
-            ease: "easeInOut",
-            duration: 1,
-            delay: 1.8,
-          }}
-        >
-          scroll
-        </motion.span>
-        <motion.span
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{
-            ease: "easeInOut",
-            duration: 1,
-            delay: 1.8,
-          }}
-        >
-          down
-        </motion.span>
-      </motion.div>
+      ></motion.div>
       <AnimatedLetters title={title} />
     </div>
   );
 };
 
-const BannerRowCenter: React.FC<BannerRowCenterProps> = ({ title, playMarquee }) => {
+const BannerRowCenter: React.FC<BannerRowCenterProps> = ({
+  title,
+  playMarquee,
+  speed = 0.5,
+}) => {
   return (
-    <div className={`banner-row marquee ${playMarquee ? "animate" : ""}`}>
+    <div
+      className={`banner-row marquee ${playMarquee ? "animate" : ""}`}
+      style={{ "--marquee-speed": speed } as React.CSSProperties}
+    >
       <motion.div
         initial={{ y: 310 }}
         animate={{ y: 0 }}
-        transition={{ ease: [0.6, 0.01, -0.05, 0.9], duration: 1 }}
+        transition={{
+          ease: [0.6, 0.01, 0.05, 0.95],
+          duration: 1,
+        }}
         className="marquee__inner"
       >
         <AnimatedLetters title={title} disabled />
@@ -144,9 +140,13 @@ const Banner: React.FC = () => {
 
   return (
     <motion.div className="banner" variants={banner}>
-      <BannerRowTop title="brand" />
-      <BannerRowCenter title="experience" playMarquee={playMarquee} />
-      <BannerRowBottom title="studio" />
+      <BannerRowTop title="GDG" />
+      <BannerRowCenter
+        title="google-developers-group"
+        playMarquee={playMarquee}
+        speed={0.7} 
+      />
+      <BannerRowBottom title="rbu" />
     </motion.div>
   );
 };

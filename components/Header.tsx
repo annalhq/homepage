@@ -1,5 +1,8 @@
+"use client";
+
 import React from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const Header: React.FC = () => {
   return (
@@ -7,33 +10,33 @@ const Header: React.FC = () => {
       initial={{ opacity: 0, y: -180 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{
-        ease: "easeInOut",
+        ease: [0.6, 0.01, 0.05, 0.95],
         duration: 1,
         delay: 0.6,
       }}
       className="header"
     >
       <div className="header-inner">
-        <div className="logo">Ollie</div>
+        <div className="logo">GDG RBU</div>
         <nav className="nav">
           <li>
-            <a href="/design">Design</a>
+            <Link href="/design">Design</Link>
           </li>
           <li>
-            <a href="/strategy">Strategy</a>
+            <Link href="/strategy">Strategy</Link>
           </li>
           <li>
-            <a href="/cases">Cases</a>
+            <Link href="/cases">Cases</Link>
           </li>
           <li>
-            <a href="/about">About</a>
+            <Link href="/about">About</Link>
           </li>
           <li>
-            <a href="/why">Why work with us?</a>
+            <Link href="/why">Why work with us?</Link>
           </li>
         </nav>
         <div className="contact">
-          <a href="/contact">Let&apos;s work together</a>
+          <Link href="/contact">Let it be, don&apos;t care</Link>
         </div>
         <div className="hamburger-menu">
           <span></span>

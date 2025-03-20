@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, AnimateSharedLayout, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import "../sass/main.scss";
 
 import Header from "@/components/Header";
@@ -22,7 +22,7 @@ export default function Home() {
   }, [loading]);
 
   return (
-    <AnimateSharedLayout>
+    <main>
       <AnimatePresence mode="wait">
         {loading ? (
           <motion.div key="loader">
@@ -35,7 +35,10 @@ export default function Home() {
             {!loading && (
               <div className="transition-image final">
                 <motion.img
-                  transition={{ ease: [0.6, 0.01, -0.05, 0.9], duration: 1.6 }}
+                  transition={{ 
+                    duration: 1.6,
+                    ease: [0.6, 0.01, 0.05, 0.95]
+                  }}
                   src="/images/image-2.jpg"
                   layoutId="main-image-1"
                   alt="Main Image"
@@ -45,6 +48,6 @@ export default function Home() {
           </>
         )}
       </AnimatePresence>
-    </AnimateSharedLayout>
+    </main>
   );
 }
